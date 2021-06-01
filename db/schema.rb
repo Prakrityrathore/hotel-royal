@@ -13,6 +13,12 @@
 ActiveRecord::Schema.define(version: 2021_06_01_173118) do
 
   create_table "guests", force: :cascade do |t|
+    t.string "name"
+    t.string "id_proof"
+    t.string "email"
+    t.integer "phone_number"
+    t.text "address"
+    t.integer "number_of_persons"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
