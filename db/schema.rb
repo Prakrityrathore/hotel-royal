@@ -10,17 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_173118) do
+ActiveRecord::Schema.define(version: 2021_06_02_160518) do
 
-  create_table "guests", force: :cascade do |t|
+  create_table "dishes", force: :cascade do |t|
+    t.integer "restaurant_id"
     t.string "name"
-    t.string "id_proof"
-    t.string "email"
-    t.integer "phone_number"
+    t.string "item_category"
+    t.integer "price"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_dishes_on_restaurant_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
     t.text "address"
-    t.integer "number_of_persons"
+    t.text "opening_hours"
+    t.string "email"
+    t.boolean "accept_reservation", default: true
+    t.boolean "home_deliveries", default: true
+    t.integer "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "dishes", "restaurants"
 end
