@@ -18,6 +18,12 @@ class DishController < ApplicationController
         Dish.destroy
         render_success message: 'Dish is deleted from menu'
     end
+    
+    def dishes
+        user = User.find(params[:id])
+        dishes = user.dishes
+    end
+        
 
     def dish_params
         params.require(:restaurant).permit(:name, :item_category, :price, :quantity)
